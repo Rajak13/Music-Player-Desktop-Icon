@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melodies</title>
+    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Sakura petal animation -->
+    <div class="sakura-petal"></div>
+    <div class="sakura-petal"></div>
+    <div class="sakura-petal"></div>
+
+    <div class="player-container">
+        <div class="music-player">
+            <div class="header" id="drag-area">
+                <h1>🌸 My Music Player</h1>
+                <button id="minimize-btn" class="minimize-btn">-</button>
+                <div class="artwork-container">
+                    <img src="assets/cat-headphone.jpg" class="floating-art" alt="Music Artwork">
+                </div>
+                <div id="current-song">Now Playing: <span id="song-title">Select a Song</span></div>
+            </div>
+
+            <audio id="audio"></audio>
+
+            <div class="controls">
+                <button id="prev" class="control-btn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button id="play" class="control-btn main-btn">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button id="next" class="control-btn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <div class="seek-container">
+                <input type="range" id="seek-bar" value="0" max="100" class="seek-bar">
+            </div>
+
+            <div class="time-bubble">
+                <span id="current-time">0:00</span>
+                <span id="total-duration">0:00</span>
+            </div>
+
+            <div class="volume-control">
+                <input type="range" id="volume-slider" class="volume-slider" min="0" max="1" step="0.01">
+            </div>
+        </div>
+    </div>
+    <script src="renderer.js"></script>
+</body>
+</html>
