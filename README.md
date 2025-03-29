@@ -26,5 +26,6 @@ A lightweight and customizable desktop music player built with **Electron**. Thi
    git clone https://github.com/Rajak13/Music-Player-Desktop-Icon.git
    cd Music-Player-Desktop-Icon
 2. **Run the following commands**:
-   `npm install electron --save-dev`
-   `npm start`
+   ```bash
+   npm install electron --save-dev
+   npm start
