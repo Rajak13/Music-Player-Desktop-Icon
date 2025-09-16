@@ -1,0 +1,2 @@
+# This file ensures the songs directory is included in git
+# but the actual song files are ignored

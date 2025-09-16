@@ -1,0 +1,46 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="256" cy="256" r="240" fill="#000000" stroke="#dc2626" stroke-width="8"/>
+  
+  <!-- Music note -->
+  <g fill="#dc2626">
+    <!-- Note stem -->
+    <rect x="200" y="120" width="8" height="200" rx="4"/>
+    
+    <!-- Note head -->
+    <ellipse cx="180" cy="300" rx="25" ry="18" transform="rotate(-20 180 300)"/>
+    
+    <!-- Musical staff lines -->
+    <rect x="120" y="180" width="280" height="2" fill="#ffffff" opacity="0.3"/>
+    <rect x="120" y="200" width="280" height="2" fill="#ffffff" opacity="0.3"/>
+    <rect x="120" y="220" width="280" height="2" fill="#ffffff" opacity="0.3"/>
+    <rect x="120" y="240" width="280" height="2" fill="#ffffff" opacity="0.3"/>
+    <rect x="120" y="260" width="280" height="2" fill="#ffffff" opacity="0.3"/>
+  </g>
+  
+  <!-- Headphones -->
+  <g fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round">
+    <!-- Headband -->
+    <path d="M 180 100 Q 256 60 332 100"/>
+    
+    <!-- Left ear cup -->
+    <rect x="160" y="95" width="30" height="40" rx="15" fill="#dc2626" stroke="#ffffff" stroke-width="3"/>
+    
+    <!-- Right ear cup -->
+    <rect x="322" y="95" width="30" height="40" rx="15" fill="#dc2626" stroke="#ffffff" stroke-width="3"/>
+  </g>
+  
+  <!-- Decorative elements -->
+  <g fill="#ffffff" opacity="0.6">
+    <!-- Small circles -->
+    <circle cx="320" cy="200" r="4"/>
+    <circle cx="340" cy="240" r="3"/>
+    <circle cx="360" cy="280" r="2"/>
+    
+    <!-- Heart shape for playlist -->
+    <path d="M 300 350 C 300 340, 310 335, 315 340 C 320 335, 330 340, 330 350 C 330 360, 315 375, 315 375 C 315 375, 300 360, 300 350 Z"/>
+  </g>
+  
+  <!-- App name -->
+  <text x="256" y="420" font-family="Inter, sans-serif" font-size="36" font-weight="600" text-anchor="middle" fill="#ffffff">Melodies</text>
+</svg>

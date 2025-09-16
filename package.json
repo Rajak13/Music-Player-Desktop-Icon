@@ -1,16 +1,99 @@
 {
-  "name": "music-player-desktop-icon",
+  "name": "melodies-music-player",
+  "productName": "Melodies",
   "version": "1.0.0",
+  "description": "A beautiful, modern music player with playlist management and local file support",
   "main": "main.js",
+  "homepage": "https://github.com/Rajak13/Music-Player-Desktop-Icon",
+  "author": {
+    "name": "Rajak12",
+    "email": "queresma05@gmail.com"
+  },
+  "license": "MIT",
   "scripts": {
     "start": "electron .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "electron . --dev",
+    "build": "electron-builder",
+    "build:mac": "electron-builder --mac",
+    "build:win": "electron-builder --win",
+    "build:linux": "electron-builder --linux",
+    "dist": "npm run build",
+    "pack": "electron-builder --dir",
+    "postinstall": "electron-builder install-app-deps"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "keywords": [
+    "music",
+    "player",
+    "audio",
+    "playlist",
+    "electron",
+    "desktop",
+    "mp3",
+    "music-player"
+  ],
   "devDependencies": {
-    "electron": "^35.1.2"
+    "electron": "^35.1.2",
+    "electron-builder": "^24.13.3"
+  },
+  "dependencies": {
+    "fs-extra": "^11.1.1"
+  },
+  "build": {
+    "appId": "com.rajak13.melodies",
+    "productName": "Melodies",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*",
+      "!assets/songs/*.mp3",
+      "!assets/songs/*.wav",
+      "!assets/songs/*.m4a",
+      "!assets/songs/*.flac",
+      "!assets/songs/*.ogg",
+      "!assets/songs/*.aac",
+      "!assets/songs/*.json",
+      "!data/playlists.json"
+    ],
+    "mac": {
+      "icon": "assets/icon.icns",
+      "category": "public.app-category.music",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ]
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "linux": {
+      "category": "AudioVideo",
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
   }
 }

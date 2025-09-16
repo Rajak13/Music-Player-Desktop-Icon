@@ -1,58 +1,216 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Melodies</title>
     <link rel="stylesheet" href="assets/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
-    <!-- Sakura petal animation -->
-    <div class="sakura-petal"></div>
-    <div class="sakura-petal"></div>
-    <div class="sakura-petal"></div>
 
-    <div class="player-container">
-        <div class="music-player">
-            <div class="header" id="drag-area">
-                <h1>🌸 My Music Player</h1>
-                <button id="minimize-btn" class="minimize-btn">-</button>
+<body>
+    <!-- Main App Container -->
+    <div class="app-container">
+        <!-- Navigation Bar -->
+        <nav class="nav-bar">
+            <div class="nav-item" data-screen="player">
+                <i class="fas fa-music"></i>
+                <span>Player</span>
+            </div>
+            <div class="nav-item active" data-screen="library">
+                <i class="fas fa-list"></i>
+                <span>Library</span>
+            </div>
+            <div class="nav-item" data-screen="playlists">
+                <i class="fas fa-heart"></i>
+                <span>Playlists</span>
+            </div>
+            <button id="minimize-btn" class="minimize-btn">
+                <i class="fas fa-minus"></i>
+            </button>
+        </nav>
+
+        <!-- Player Screen -->
+        <div class="screen" id="player-screen">
+            <div class="player-header" id="drag-area">
                 <div class="artwork-container">
-                    <img src="assets/cat-headphone.jpg" class="floating-art" alt="Music Artwork">
+                    <img src="assets/cat-headphone.jpg" class="album-art" alt="Album Art" id="album-art">
+                    <div class="play-overlay" id="play-overlay">
+                        <i class="fas fa-play"></i>
+                    </div>
                 </div>
-                <div id="current-song">Now Playing: <span id="song-title">Select a Song</span></div>
+
+                <div class="song-info">
+                    <h2 id="song-title">Select a Song</h2>
+                    <p id="artist-name">Unknown Artist</p>
+                    <p id="current-playlist">No Playlist</p>
+                </div>
             </div>
 
             <audio id="audio"></audio>
 
-            <div class="controls">
-                <button id="prev" class="control-btn">
-                    <i class="fas fa-chevron-left"></i>
+            <div class="progress-section">
+                <div class="time-display">
+                    <span id="current-time">0:00</span>
+                    <span id="total-duration">0:00</span>
+                </div>
+                <div class="progress-container">
+                    <input type="range" id="seek-bar" value="0" max="100" class="progress-bar">
+                </div>
+            </div>
+
+            <div class="controls-section">
+                <button id="shuffle" class="control-btn secondary">
+                    <i class="fas fa-random"></i>
                 </button>
-                <button id="play" class="control-btn main-btn">
+                <button id="prev" class="control-btn secondary">
+                    <i class="fas fa-step-backward"></i>
+                </button>
+                <button id="play" class="control-btn primary">
                     <i class="fas fa-play"></i>
                 </button>
-                <button id="next" class="control-btn">
-                    <i class="fas fa-chevron-right"></i>
+                    <button id="next" class="control-btn secondary">
+                        <i class="fas fa-step-forward"></i>
+                    </button>
+                    <button id="repeat" class="control-btn secondary">
+                        <i class="fas fa-redo"></i>
+                    </button>
+            </div>
+
+            <div class="volume-section">
+                <i class="fas fa-volume-down"></i>
+                <input type="range" id="volume-slider" class="volume-slider" min="0" max="1" step="0.01" value="0.7">
+                <i class="fas fa-volume-up"></i>
+            </div>
+
+            <div class="queue-section">
+                <h3>Up Next</h3>
+                <div id="queue-list" class="queue-list">
+                    <p class="empty-queue">No songs in queue</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Library Screen -->
+        <div class="screen active" id="library-screen">
+            <div class="library-header">
+                <h2>Your Library</h2>
+                <div class="library-actions">
+                    <button id="upload-btn" class="upload-btn">
+                        <i class="fas fa-plus"></i>
+                        Add Music
+                    </button>
+                    <button id="refresh-library" class="refresh-btn">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="library-stats">
+                <div class="stat">
+                    <span class="stat-number" id="total-songs">0</span>
+                    <span class="stat-label">Songs</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" id="total-duration">0:00</span>
+                    <span class="stat-label">Total Time</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" id="total-playlists">0</span>
+                    <span class="stat-label">Playlists</span>
+                </div>
+            </div>
+
+            <div class="library-controls">
+                <button id="play-all" class="action-btn">
+                    <i class="fas fa-play"></i>
+                    Play All
+                </button>
+                <button id="shuffle-all" class="action-btn">
+                    <i class="fas fa-random"></i>
+                    Shuffle All
                 </button>
             </div>
 
-            <div class="seek-container">
-                <input type="range" id="seek-bar" value="0" max="100" class="seek-bar">
+            <div class="song-list" id="song-list">
+                <!-- Songs will be populated here -->
             </div>
 
-            <div class="time-bubble">
-                <span id="current-time">0:00</span>
-                <span id="total-duration">0:00</span>
+            <!-- Hidden file input -->
+            <input type="file" id="file-input" multiple accept="audio/*" style="display: none;">
+        </div>
+
+        <!-- Playlists Screen -->
+        <div class="screen" id="playlists-screen">
+            <div class="playlists-header">
+                <h2>Playlists</h2>
+                <button id="create-playlist" class="create-btn">
+                    <i class="fas fa-plus"></i>
+                    New Playlist
+                </button>
             </div>
 
-            <div class="volume-control">
-                <input type="range" id="volume-slider" class="volume-slider" min="0" max="1" step="0.01">
+            <div class="playlists-grid" id="playlists-grid">
+                <!-- Playlists will be populated here -->
+            </div>
+
+            <!-- Playlist Detail View -->
+            <div class="playlist-detail hidden" id="playlist-detail">
+                <div class="playlist-detail-header">
+                    <button id="back-to-playlists" class="back-btn">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <div class="playlist-info">
+                        <h3 id="playlist-detail-name">Playlist Name</h3>
+                        <p id="playlist-detail-count">0 songs</p>
+                    </div>
+                    <div class="playlist-actions">
+                        <button id="play-playlist" class="action-btn">
+                            <i class="fas fa-play"></i>
+                        </button>
+                        <button id="shuffle-playlist" class="action-btn">
+                            <i class="fas fa-random"></i>
+                        </button>
+                        <button id="delete-playlist" class="delete-btn">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="playlist-songs" id="playlist-songs">
+                    <!-- Playlist songs will be populated here -->
+                </div>
             </div>
         </div>
     </div>
+
+    <!-- Create Playlist Modal -->
+    <div class="modal hidden" id="create-playlist-modal">
+        <div class="modal-content">
+            <h3>Create New Playlist</h3>
+            <input type="text" id="playlist-name-input" placeholder="Enter playlist name..." maxlength="50">
+            <div class="modal-actions">
+                <button id="cancel-playlist" class="cancel-btn">Cancel</button>
+                <button id="confirm-playlist" class="confirm-btn">Create</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add to Playlist Modal -->
+    <div class="modal hidden" id="add-to-playlist-modal">
+        <div class="modal-content">
+            <h3>Add to Playlist</h3>
+            <div id="playlist-options" class="playlist-options">
+                <!-- Playlist options will be populated here -->
+            </div>
+            <div class="modal-actions">
+                <button id="cancel-add-playlist" class="cancel-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
     <script src="renderer.js"></script>
 </body>
+
 </html>
