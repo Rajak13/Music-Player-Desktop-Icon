@@ -19,7 +19,9 @@
     "build:linux": "electron-builder --linux",
     "dist": "npm run build",
     "pack": "electron-builder --dir",
-    "postinstall": "electron-builder install-app-deps"
+    "postinstall": "electron-builder install-app-deps",
+    "publish": "electron-builder --publish=always",
+    "release": "npm run build && npm run publish"
   },
   "keywords": [
     "music",
@@ -43,6 +45,11 @@
     "productName": "Melodies",
     "directories": {
       "output": "dist"
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "Rajak13",
+      "repo": "Music-Player-Desktop-Icon"
     },
     "files": [
       "**/*",
