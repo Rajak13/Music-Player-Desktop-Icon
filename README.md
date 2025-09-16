@@ -7,7 +7,7 @@
   
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
   [![Electron](https://img.shields.io/badge/Electron-35.1.2-blue.svg)](https://electronjs.org/)
-  [![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey.svg)](https://github.com/Rajak13/Music-Player-Desktop-Icon/releases)
+  [![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS-lightgrey.svg)](https://github.com/Rajak13/Music-Player-Desktop-Icon/releases)
 </div>
 
 ## ✨ Features
@@ -60,7 +60,6 @@ Create and manage custom playlists for different moods and occasions.
 2. Download the appropriate installer for your platform:
    - **Windows**: `Melodies-Setup-1.0.0.exe`
    - **macOS**: `Melodies-1.0.0.dmg`
-   - **Linux**: `Melodies-1.0.0.AppImage`
 
 ### Build from Source
 
@@ -86,7 +85,6 @@ npm run build
 # Build for specific platforms
 npm run build:mac    # macOS
 npm run build:win    # Windows
-npm run build:linux  # Linux
 ```
 
 ## 🎵 Getting Started

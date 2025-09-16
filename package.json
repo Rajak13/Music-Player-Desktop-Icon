@@ -16,7 +16,7 @@
     "build": "electron-builder",
     "build:mac": "electron-builder --mac",
     "build:win": "electron-builder --win",
-    "build:linux": "electron-builder --linux",
+
     "dist": "npm run build",
     "pack": "electron-builder --dir",
     "postinstall": "electron-builder install-app-deps",
@@ -85,17 +85,7 @@
         }
       ]
     },
-    "linux": {
-      "category": "AudioVideo",
-      "target": [
-        {
-          "target": "AppImage",
-          "arch": [
-            "x64"
-          ]
-        }
-      ]
-    },
+
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,

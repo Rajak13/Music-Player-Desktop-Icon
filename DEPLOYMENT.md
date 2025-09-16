@@ -23,7 +23,7 @@ Edit `package.json`:
 
 ### 2. Create Icons
 - Convert `assets/icon.svg` to multiple formats:
-  - `assets/icon.png` (512x512 for Linux)
+  - `assets/icon.png` (512x512)
   - `assets/icon.ico` (for Windows)
   - `assets/icon.icns` (for macOS)
 
@@ -78,7 +78,7 @@ npm run build
 # Build for specific platforms
 npm run build:mac    # macOS (.dmg)
 npm run build:win    # Windows (.exe)
-npm run build:linux  # Linux (.AppImage)
+
 ```
 
 ### Automated Build (GitHub Actions)
@@ -105,9 +105,7 @@ After building, you'll have:
 - `Melodies Setup 1.0.0.exe` (Installer)
 - `Melodies-1.0.0-win.zip` (Portable)
 
-### Linux
-- `Melodies-1.0.0.AppImage` (Universal)
-- `Melodies_1.0.0_amd64.deb` (Debian/Ubuntu)
+
 
 ## 🔐 Code Signing (Optional but Recommended)
 
