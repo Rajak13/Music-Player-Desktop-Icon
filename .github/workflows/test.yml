@@ -33,4 +33,18 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
       - name: List build output
-        run: ls -la dist/
+        run: |
+          echo "Build output:"
+          node -e "
+            const fs = require('fs');
+            try {
+              const files = fs.readdirSync('dist');
+              if (files.length === 0) {
+                console.log('No files in dist directory');
+              } else {
+                files.forEach(f => console.log(f));
+              }
+            } catch (e) {
+              console.log('Error reading dist directory:', e.message);
+            }
+          "

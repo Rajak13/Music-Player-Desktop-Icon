@@ -16,7 +16,6 @@
     "build": "electron-builder",
     "build:mac": "electron-builder --mac",
     "build:win": "electron-builder --win",
-
     "dist": "npm run build",
     "pack": "electron-builder --dir",
     "postinstall": "electron-builder install-app-deps",
@@ -76,6 +75,7 @@
       ]
     },
     "win": {
+      "icon": "assets/icon.ico",
       "target": [
         {
           "target": "nsis",
@@ -85,7 +85,6 @@
         }
       ]
     },
-
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,

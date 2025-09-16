@@ -32,20 +32,42 @@ jobs:
       
       - name: Build for macOS
         if: matrix.platform == 'mac'
-        run: npm run build:mac
+        run: |
+          echo "Building for macOS..."
+          npm run build:mac
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Build for Windows
         if: matrix.platform == 'win'
-        run: npm run build:win
+        run: |
+          echo "Building for Windows..."
+          npm run build:win
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
 
       
       - name: List build output
-        run: ls -la dist/
+        run: |
+          echo "Build output:"
+          node -e "
+            const fs = require('fs');
+            const path = require('path');
+            try {
+              const files = fs.readdirSync('dist');
+              if (files.length === 0) {
+                console.log('No files in dist directory');
+              } else {
+                files.forEach(f => {
+                  const stats = fs.statSync(path.join('dist', f));
+                  console.log(\`\${f} (\${(stats.size / 1024 / 1024).toFixed(2)} MB)\`);
+                });
+              }
+            } catch (e) {
+              console.log('Error reading dist directory:', e.message);
+            }
+          "
       
       - name: Release
         uses: softprops/action-gh-release@v1
