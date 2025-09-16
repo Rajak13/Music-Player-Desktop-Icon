@@ -62,7 +62,6 @@
       "!data/playlists.json"
     ],
     "mac": {
-      "icon": "assets/icon.icns",
       "category": "public.app-category.music",
       "target": [
         {
@@ -75,7 +74,6 @@
       ]
     },
     "win": {
-      "icon": "assets/icon.ico",
       "target": [
         {
           "target": "nsis",
